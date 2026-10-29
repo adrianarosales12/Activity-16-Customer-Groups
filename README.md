@@ -1,12 +1,10 @@
 # Activity 16: Customer Groups — Finding ShopSmart's Customer Segments with k-means
 ## Session 29
 ## Due date (mm/dd/yyyy): 11/01/2026
+## Adriana Rosales González
 ## Delivery Format: [] Video URL | [X] Markdown file | [] Jupyter Notebook file
 
 ---
-
-# Activity Description
-
 ## The Story
 
 **ShopSmart** (the online store from Activities 8 and 14) sends the same promotion to every
@@ -18,35 +16,6 @@ store should use, and recommend what to do with each one.
 Because nobody tells k-means what the groups are, this is **unsupervised learning**: the
 algorithm has to find the structure on its own. You will see exactly how it does that, when it
 works well, and when it doesn't.
-
-**No programming background is required.** Everything happens by clicking, moving sliders, and
-reading charts in the app. The customers are **fictional**, generated for this activity.
-
-**App link:** https://uam-aiclass-a16.streamlit.app/
-
-If you'd rather run it on your own machine instead of using the shared link, see
-**Running It Yourself** below.
-
-### The App
-
-Six tabs:
-
-1. **🛒 Meet the Customers** — 300 customers, each one a dot: visits per month vs. average spend
-   per visit. No labels, no colors.
-2. **👣 Step by Step** — watch k-means run one step at a time. You choose k, how the starting
-   centroids are picked (random customers, k-means++, or **pick your own** by clicking customers),
-   the random seed, and the two stopping rules: a **maximum number of iterations** and a
-   **tolerance**.
-3. **🔁 Restarts** — run k-means many times from different starting centroids and compare the
-   results.
-4. **📐 Choosing k & Segments** — the **elbow method** and the **silhouette score** for choosing k,
-   plus a segment report (size, visits, spend, revenue) for the k you pick.
-5. **⚠️ Where k-means Fails** — two datasets with known groups that k-means gets wrong.
-6. **🖼️ Bonus: Photo Compression** — k-means picks the k colors that best represent a photo. You
-   can try your own photo too.
-
-> 💡 **Hint:** When the app first opens, wait until it finishes loading (the running indicator in
-> the top-right corner disappears) before switching tabs.
 
 ### Your Tasks
 
@@ -110,54 +79,9 @@ Six tabs:
    > 💡 **Hint:** Before submitting, check each answer against **How Your Grade Is Calculated**
    > below. It lists exactly what earns full points on every question.
 
-### How Your Grade Is Calculated
 
-Your grade is out of **100 points**, split across the 12 reflection questions. There are three
-kinds of questions, and each kind is graded differently:
 
-- **Exact answers** (Q2, Q4, Q8, and the numbers in Q6, Q9, Q10, Q11): there is one correct value,
-  read from the app. With the settings the question gives, everyone sees exactly the same numbers.
-  You get full points for correct values and partial credit when some parts are right. Small
-  rounding differences are accepted.
-- **Your own experiments** (Q5, Q7): every student's choices are different, so there is no single
-  right number. But the app always gives exactly the same result for the same settings, so any run
-  you report can be re-run and checked. You are graded on whether your numbers match your settings
-  and on your description. Numbers that no setting can reproduce get no credit.
-- **Explain in your own words** (Q1, Q3, Q12, and the explanations in Q6, Q9, Q10, Q11): graded on
-  four levels.
-  - **Excellent:** complete, correct, and specific to your own results.
-  - **Proficient:** correct, but missing a required part or not tied to your own results.
-  - **Developing:** vague, incomplete, or partly wrong.
-  - **Insufficient:** missing or wrong.
 
-| # | Question | Points | Full points if you… | Partial credit |
-|---|---|---:|---|---|
-| 1 | Your first guess | 4 | say how many groups you see **and** describe each one in plain words | 2–3: a number with little or no description |
-| 2 | The default run | 8 | report the iterations, the stopping rule, and the final WCSS correctly | 3–6: 1 or 2 of the 3 correct |
-| 3 | Assignment and update | 10 | explain both steps in your own words and why WCSS can never go up, using your iteration log | Proficient 6–8 · Developing 3–5 · Insufficient 0–2 |
-| 4 | Stopping early | 10 | report the stopping rule, iterations, and final WCSS for both runs, and explain the risk of stopping early using the log | 4–7: values right but no explanation, or one run wrong |
-| 5 | A bad seed | 8 | report a seed whose WCSS is worse, with the matching WCSS, a screenshot, and what went wrong | Proficient 5–7 · Developing 2–4 · Insufficient 0–1 |
-| 6 | Restarts and the lecture's claim | 12 | report all four restart numbers correctly and use them to judge the lecture's statement about convergence | Proficient 8–10 · Developing 4–7 · Insufficient 0–3 |
-| 7 | Your own bad start | 6 | report your 4 customer numbers and the final WCSS (reproducible), with a screenshot and what went wrong | Proficient 4–5 · Developing 2–3 · Insufficient 0–1 |
-| 8 | Elbow and silhouette | 6 | give the k each method suggests and compare it with your guess from Q1 | 3–4: one method right, or no comparison |
-| 9 | Business segments | 12 | name every cluster, identify the top-revenue cluster with its share of customers and of revenue, and propose one specific action per cluster | Proficient 8–10 · Developing 4–7 · Insufficient 0–3 |
-| 10 | Where k-means fails | 10 | report the agreement % and both WCSS values for both datasets, and explain what the WCSS comparison means | 4–7: numbers right but weak explanation, or one dataset missing |
-| 11 | Photo compression | 6 | report bits per pixel and size for k = 4, 16, and 32 (plus the original's size), and justify your smallest acceptable k | 3–4: sizes right but no justification, or one k wrong |
-| 12 | Another application | 8 | describe a real use: what each data point is, which features, how you'd choose k, and what you'd do with the clusters | Proficient 5–6 · Developing 2–4 · Insufficient 0–1 |
-| | **Total** | **100** | | |
-
-**Delivery format:** your answers must be in a Markdown file (`A16_ReflectionQuestions.md`); a `.zip`
-with that file and your screenshots is fine. Answers delivered in another format (PDF, Word, `.txt`)
-lose **5 points** from the total.
-
-### Running It Yourself (optional)
-
-```bash
-conda activate ai_uam
-cd Activity16
-pip install -r requirements.txt
-streamlit run app.py
-```
 
 ### About the Data and Photos
 
@@ -168,6 +92,88 @@ scikit-image project's sample data:
 - *chelsea*: Stéfan van der Walt (CC0).
 - *astronaut*: NASA, astronaut Eileen Collins (public domain).
 
+---
+# Activity 16 — Reflection Questions: Customer Groups (k-means)
+
+Answer every question using the app's **default settings**, unless a question tells you to change
+something. Submit this file together with your labeled screenshots — do not just describe the app,
+use your actual results.
+
+---
+
+## Part A — The data and the algorithm
+
+1. **Before running anything**, look at the chart in the *Meet the Customers* tab. How many groups
+   of customers do you see by eye? Describe each group in plain words (for example, "people who
+   visit often but spend little").
+
+2. In the *Step by Step* tab with the default settings (k = 4, Random customers, seed 4, maximum
+   iterations 30, tolerance 0), run k-means to the end. Report:
+   (a) how many iterations it took,
+   (b) which stopping rule stopped it, and
+   (c) the final WCSS.
+
+3. In your own words, explain what the **assignment step** and the **update step** do. Then look at
+   the WCSS column of your iteration log: what happened to WCSS from one iteration to the next?
+   Explain why it can never go up.
+
+4. Keep the default settings, but:
+   (a) set **maximum iterations to 3**, and
+   (b) set maximum iterations back to 30 and the **tolerance to 0.1**.
+
+   For each run, report the stopping rule, the number of iterations, and the final WCSS. Compare
+   them with your answer to Question 2. What is the risk of stopping k-means early? (Hint: look at
+   the "largest centroid move" column of the full run's log.)
+
+## Part B — Starting centroids
+
+5. With **Random customers** and k = 4, try different random seeds until you find one whose final
+   WCSS is clearly worse than in Question 2. Report the seed and its final WCSS, include a
+   screenshot, and describe what went wrong (look at where the centroids ended up).
+
+6. In the *Restarts* tab (k = 4, 20 runs), report:
+   (a) the best WCSS found,
+   (b) how many random starts reached it,
+   (c) how many k-means++ starts reached it, and
+   (d) the worst random-start WCSS.
+
+   The lecture says that when k-means converges, it "has reached an optimal and stable result."
+   Every one of these runs converged. Based on your numbers, is the lecture's statement completely
+   true? Explain.
+
+7. Choose **Pick my own** and deliberately choose 4 bad starting customers. Report the 4 customer
+   numbers you chose and the final WCSS, include a screenshot of the final clusters, and describe
+   what the final clusters got wrong.
+
+## Part C — Choosing k and making business decisions
+
+8. In the *Choosing k & Segments* tab, which k does the **elbow method** suggest, and which k does
+   the **silhouette score** suggest? Do they agree with your guess in Question 1?
+
+9. In the segment report with k = 4:
+   (a) give each cluster a business name,
+   (b) say which cluster brings in the largest share of total monthly revenue, and report that
+   cluster's share of customers and its share of revenue, and
+   (c) propose one specific marketing action for each cluster.
+
+## Part D — Limits of k-means
+
+10. In the *Where k-means Fails* tab, for **each** of the two datasets, report the percentage of
+    points k-means put in their true group, the WCSS of k-means' answer, and the WCSS of the true
+    groups. What does comparing the two WCSS values tell you about *why* k-means fails on these
+    datasets?
+
+## Part E — Another application
+
+11. In the *Bonus: Photo Compression* tab, with the coffee photo (k-means++, seed 0), report the
+    bits per pixel and the uncompressed size for **k = 4, 16, and 32**, along with the original's
+    size. What is the smallest k at which the photo still looks acceptable to you, and why?
+
+12. Describe **one other real-world use of k-means** (not customers or photos). What would each data
+    point be, which features would you cluster on, how would you choose k, and what would you do
+    with the clusters once you had them?
+
+---
 # References:
 - [Streamlit documentation](https://docs.streamlit.io/)
 - [Arthur & Vassilvitskii (2007), "k-means++: The Advantages of Careful Seeding"](https://theory.stanford.edu/~sergei/papers/kMeansPP-soda.pdf)
