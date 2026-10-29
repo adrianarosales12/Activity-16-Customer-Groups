@@ -22,23 +22,48 @@ works well, and when it doesn't.
 1. **In Meet the Customers**, before running anything, decide how many groups you see by eye and
    write down a plain-words description of each one.
 
-   > 💡 **Hint:** There is no wrong answer here. Hover over any dot to see that customer's numbers.
-   > You will compare this guess with what k-means finds in Task 6.
+- I can visually identify about four customer groups.
+   - Low-activity, low-spending customers: customers who visit the store infrequently and spend little money per visit.
+   - High-activity, low-spending customers: customers who visit often but tend to make small purchases.
+   - Low-activity, high-spending customers: customers who do not visit frequently but spend a lot when they do.
+   - High-activity, high-spending customers: customers who visit regularly and spend large amounts, making them likely the most valuable customers.
+   - These groups are only my visual estimation before running k-means, and I will compare this guess with the actual clustering results later.
+
+
 
 2. **In Step by Step, leave the default settings** (k = 4, Random customers, seed 4). Click
    **Next step ▶** through at least the first two iterations (4 clicks), then **⏭ Run to the end**.
    Take a screenshot of the final chart, the stopping message, and the iteration log.
+<img width="571" height="603" alt="image" src="https://github.com/user-attachments/assets/204c3159-0e7c-4a36-9b3c-4802c60aa37c" />
 
-   > 💡 **Hint:** In each **assignment** step, watch which customers change color. In each
-   > **update** step, watch where the ✕ centroids move: each one jumps to the middle (average) of
-   > its own customers. The dotted lines are the centroids' trails.
+<img width="550" height="314" alt="image" src="https://github.com/user-attachments/assets/1b0e7ebb-f082-4c23-83f1-7fef6ea3c4bd" />
+
+ - Using the default settings (k = 4, Random customers, seed = 4), the k-means algorithm converged after 10 iterations.
+
+- The algorithm stopped because no customers changed clusters during the last iteration, and the centroids stopped moving. This indicates that the clustering solution had stabilized and no further improvements could be made.
+
+- The final WCSS (Within-Cluster Sum of Squares) was 34.82. Throughout the process, the WCSS decreased from 91.04 in the first iteration to 34.82 in the final iteration, showing that the clusters became progressively more compact as the algorithm refined the assignments and centroid positions.
+   
 
 3. **Test the two stopping rules.** Set **Maximum iterations** to 3 and run to the end. Then put it
    back to 30, set **Tolerance** to 0.1, and run to the end again. Take a screenshot of each.
 
-   > 💡 **Hint:** Compare each final WCSS with the one from Task 2. In the full run's iteration log
-   > from Task 2, look at the "largest centroid move" column: does a small move always mean the
-   > clusters are finished?
+- **TAKE 1**
+
+<img width="562" height="458" alt="image" src="https://github.com/user-attachments/assets/3edade3d-dbb0-451b-9a90-8ed8fe7fcab3" />
+
+- **TAKE 2**
+
+<img width="558" height="454" alt="image" src="https://github.com/user-attachments/assets/d8a12631-303d-48ce-99c6-4a1f7de64af5" />
+
+
+- For the first experiment, I set the maximum number of iterations to 3. The algorithm stopped after 3 iterations because it reached the maximum iteration limit before converging. The final WCSS was 88.51.
+
+- For the second experiment, I restored the maximum iterations to 30 and used a tolerance of 0.01. The algorithm converged after 10 iterations because no customers changed clusters in the last iteration. The final WCSS was 34.82.
+
+- The results show the risk of stopping the algorithm too early. When the run was limited to only 3 iterations, the WCSS remained much higher (88.51) than in the converged solution (34.82), indicating that the clusters were not fully optimized. The iteration log from the full run shows that the WCSS continued decreasing significantly after iteration 3, demonstrating that additional iterations were necessary to reach a better clustering solution.
+   
+
 
 4. **Starting centroids matter.** With Random customers, change the **seed** until you find a run
    whose final WCSS is clearly worse than in Task 2. Take a screenshot. Then choose **Pick my own**,
