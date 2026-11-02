@@ -36,6 +36,8 @@ works well, and when it doesn't.
    Take a screenshot of the final chart, the stopping message, and the iteration log.
 <img width="571" height="603" alt="image" src="https://github.com/user-attachments/assets/204c3159-0e7c-4a36-9b3c-4802c60aa37c" />
 
+<img width="550" height="314" alt="Q2_2" src="https://github.com/user-attachments/assets/2ac7fa6a-2204-48c9-b7cc-d59157330570" />
+
 
  - Using the default settings (k = 4, Random customers, seed = 4), the k-means algorithm converged after 10 iterations.
 
@@ -78,7 +80,6 @@ Due to the poor initial placement of the random seeds, two centroids (Cluster 1 
 
 <img width="567" height="580" alt="image" src="https://github.com/user-attachments/assets/d12a83f0-6d4f-4551-ae78-e23e5d402859" />
  
-<img width="567" height="580" alt="image" src="https://github.com/user-attachments/assets/d12a83f0-6d4f-4551-ae78-e23e5d402859" />
 
 ---
 7. **In Where k-means Fails**, look at both datasets. Take a screenshot of each one, including the
