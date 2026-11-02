@@ -30,13 +30,12 @@ works well, and when it doesn't.
    - These groups are only my visual estimation before running k-means, and I will compare this guess with the actual clustering results later.
 
 
-
+---
 2. **In Step by Step, leave the default settings** (k = 4, Random customers, seed 4). Click
    **Next step ▶** through at least the first two iterations (4 clicks), then **⏭ Run to the end**.
    Take a screenshot of the final chart, the stopping message, and the iteration log.
 <img width="571" height="603" alt="image" src="https://github.com/user-attachments/assets/204c3159-0e7c-4a36-9b3c-4802c60aa37c" />
 
-<img width="550" height="314" alt="image" src="https://github.com/user-attachments/assets/1b0e7ebb-f082-4c23-83f1-7fef6ea3c4bd" />
 
  - Using the default settings (k = 4, Random customers, seed = 4), the k-means algorithm converged after 10 iterations.
 
@@ -44,7 +43,7 @@ works well, and when it doesn't.
 
 - The final WCSS (Within-Cluster Sum of Squares) was 34.82. Throughout the process, the WCSS decreased from 91.04 in the first iteration to 34.82 in the final iteration, showing that the clusters became progressively more compact as the algorithm refined the assignments and centroid positions.
    
-
+---
 3. **Test the two stopping rules.** Set **Maximum iterations** to 3 and run to the end. Then put it
    back to 30, set **Tolerance** to 0.1, and run to the end again. Take a screenshot of each.
 
@@ -53,69 +52,68 @@ works well, and when it doesn't.
 <img width="562" height="458" alt="image" src="https://github.com/user-attachments/assets/3edade3d-dbb0-451b-9a90-8ed8fe7fcab3" />
 
 - **TAKE 2**
+<img width="617" height="591" alt="image" src="https://github.com/user-attachments/assets/43f348f4-648a-4c25-81e5-25de52ce5496" />
 
-<img width="558" height="454" alt="image" src="https://github.com/user-attachments/assets/d8a12631-303d-48ce-99c6-4a1f7de64af5" />
-
-
-- For the first experiment, I set the maximum number of iterations to 3. The algorithm stopped after 3 iterations because it reached the maximum iteration limit before converging. The final WCSS was 88.51.
-
-- For the second experiment, I restored the maximum iterations to 30 and used a tolerance of 0.01. The algorithm converged after 10 iterations because no customers changed clusters in the last iteration. The final WCSS was 34.82.
-
-- The results show the risk of stopping the algorithm too early. When the run was limited to only 3 iterations, the WCSS remained much higher (88.51) than in the converged solution (34.82), indicating that the clusters were not fully optimized. The iteration log from the full run shows that the WCSS continued decreasing significantly after iteration 3, demonstrating that additional iterations were necessary to reach a better clustering solution.
-   
-
-
+---
 4. **Starting centroids matter.** With Random customers, change the **seed** until you find a run
    whose final WCSS is clearly worse than in Task 2. Take a screenshot. Then choose **Pick my own**,
    click 4 starting customers that you think are a *bad* choice, and run to the end. Take a
    screenshot.
+   
+<img width="620" height="565" alt="image" src="https://github.com/user-attachments/assets/22381006-842d-4af7-a215-740c7b7874cc" />
 
-   > 💡 **Hint:** Try putting all your starting customers in the same corner of the chart. Clicking
-   > a customer adds it as a starting centroid (a yellow star); **Clear my picks** starts over.
+Due to the poor initial placement of the random seeds, two centroids (Cluster 1 and Cluster 3) ended up competing within a single group of customers in the bottom-left area. This caused two distinct segments of high-spending customers (in the top-left and top-center) to be incorrectly grouped under a single centroid (Cluster 2). The algorithm converged on a flawed local minimum that does not reflect the true structure of the data.
 
+---
 5. **In Restarts**, keep k = 4 and 20 runs. Take a screenshot of the four numbers and the dot chart.
 
-   > 💡 **Hint:** Each dot is one *complete* run that converged. If every run converged, why don't
-   > they all have the same WCSS?
+<img width="619" height="455" alt="Captura de pantalla 2026-11-01 230056" src="https://github.com/user-attachments/assets/71dbe5b8-8c7b-4338-b310-5e9bba3e1c6f" />
 
+ <img width="624" height="584" alt="image" src="https://github.com/user-attachments/assets/3083b235-90af-494b-9f70-3818f5c3550e" />
+  
+   
+---
 6. **In Choosing k & Segments**, read the elbow and silhouette charts, then set **Your choice of k**
    to 4 and study the segment report. Take a screenshot of both charts and of the report.
 
-   > 💡 **Hint:** The *elbow* is where the WCSS curve bends and then flattens. For the silhouette, look
-   > for the highest point. In the report, compare each cluster's **share of customers** with its
-   > **share of revenue**.
+<img width="567" height="580" alt="image" src="https://github.com/user-attachments/assets/d12a83f0-6d4f-4551-ae78-e23e5d402859" />
+ 
+<img width="567" height="580" alt="image" src="https://github.com/user-attachments/assets/d12a83f0-6d4f-4551-ae78-e23e5d402859" />
 
+---
 7. **In Where k-means Fails**, look at both datasets. Take a screenshot of each one, including the
    three numbers below the charts.
 
-   > 💡 **Hint:** Compare "WCSS of k-means' answer" with "WCSS of the true groups". Which one is
-   > lower, and what does that say about what k-means is trying to do?
+<img width="619" height="455" alt="Captura de pantalla 2026-11-01 230056" src="https://github.com/user-attachments/assets/ca61ec54-2563-4b3e-9130-b6a0929cd04c" />
 
+
+<img width="556" height="602" alt="image" src="https://github.com/user-attachments/assets/2fdbf14e-d344-4008-8b5d-86c6421ae770" />
+
+
+---
 8. **In Bonus: Photo Compression**, use the coffee photo with k = 4, 16, and 32. Optionally, upload
    a photo of your own. Take a screenshot at the smallest k you would accept.
 
-   > 💡 **Hint:** The sizes below the images depend only on the image size and on k. Compare the
-   > pictures, not just the numbers.
+- **K = 4**
+<img width="576" height="575" alt="image" src="https://github.com/user-attachments/assets/e3c51213-9de0-4580-8849-45ecab685a73" />
 
+- **K = 16**
+<img width="565" height="547" alt="image" src="https://github.com/user-attachments/assets/f27f464b-b2c5-466d-81e3-45c8ef1349e5" />
+
+
+- **K = 32**
+<img width="563" height="557" alt="image" src="https://github.com/user-attachments/assets/ae567c63-2fc2-460d-bc61-acafdcfd7583" />
+
+- **K = 20 ** _My own_
+<img width="581" height="548" alt="image" src="https://github.com/user-attachments/assets/9c4767de-9d78-481d-a807-3091f9a43795" />
+   
+
+---
 9. **Fill out `A16_ReflectionQuestions.md`**, using the exact numbers from your screenshots, and
    submit it along with your labeled screenshots (a `.zip` with the `.md` file and the images is
    fine).
 
-   > 💡 **Hint:** Before submitting, check each answer against **How Your Grade Is Calculated**
-   > below. It lists exactly what earns full points on every question.
 
-
-
-
-
-### About the Data and Photos
-
-The 300 ShopSmart customers and the two "Where k-means Fails" datasets are fictional, generated
-with a fixed random seed so that everyone sees exactly the same data. The photos come from the
-scikit-image project's sample data:
-- *coffee*: Rachel Michetti, courtesy of Pikolo Espresso Bar (CC0).
-- *chelsea*: Stéfan van der Walt (CC0).
-- *astronaut*: NASA, astronaut Eileen Collins (public domain).
 
 ---
 # Activity 16 — Reflection Questions: Customer Groups (k-means)
