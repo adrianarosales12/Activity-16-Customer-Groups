@@ -85,7 +85,7 @@ Due to the poor initial placement of the random seeds, two centroids (Cluster 1 
 7. **In Where k-means Fails**, look at both datasets. Take a screenshot of each one, including the
    three numbers below the charts.
 
-<img width="619" height="455" alt="Captura de pantalla 2026-11-01 230056" src="https://github.com/user-attachments/assets/ca61ec54-2563-4b3e-9130-b6a0929cd04c" />
+<img width="552" height="627" alt="Q7_2" src="https://github.com/user-attachments/assets/58c217e2-58a9-47c7-a361-a639d336de0d" />
 
 
 <img width="556" height="602" alt="image" src="https://github.com/user-attachments/assets/2fdbf14e-d344-4008-8b5d-86c6421ae770" />
