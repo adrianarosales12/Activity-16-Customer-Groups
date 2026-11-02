@@ -1,0 +1,156 @@
+# Activity 16 — Reflection Questions: Customer Groups (k-means)
+
+Answer every question using the app's **default settings**, unless a question tells you to change
+something. Submit this file together with your labeled screenshots — do not just describe the app,
+use your actual results.
+
+---
+
+## Part A — The data and the algorithm
+
+1. **Before running anything, look at the chart in the *Meet the Customers tab. How many groups
+   of customers do you see by eye? Describe each group in plain words (for example, "people who
+   visit often but spend little").**
+   
+- Number of groups seen by eye: 4 groups.
+- Plain-words descriptions:
+   - Low visits, low spend: Customers who visit rarely (1–5 visits/month) and spend very little per visit (< 500 MXN).
+   - High visits, low spend: Customers who visit frequently (10–20 visits/month) but spend very little per visit (< 500 MXN).
+   - Low visits, high spend: Customers who visit infrequently (1–5 visits/month) but spend high amounts per visit (1,000–2,000 MXN).
+   - Moderate-to-high visits, moderate-to-high spend: Customers who visit moderately (7–15 visits/month) and spend moderate-to-high amounts per visit (1,000–1,600 MXN).   
+
+2. **In the Step by Step tab with the default settings (k = 4, Random customers, seed 4, maximum
+   iterations 30, tolerance 0), run k-means to the end. Report:
+   (a) how many iterations it took,
+   (b) which stopping rule stopped it, and
+   (c) the final WCSS.**
+
+ (a) Iterations taken: 10 iterations.   
+ (b) Stopping rule: Converged (no customer changed cluster in the last iteration, so the centroids stopped moving).   
+ (c) Final WCSS: 34.82. 
+
+
+3. **In your own words, explain what the assignment step and the update step do. Then look at
+   the WCSS column of your iteration log: what happened to WCSS from one iteration to the next?
+   Explain why it can never go up.**
+
+- Assignment step: Every customer (data point) is assigned to its nearest centroid based on Euclidean distance.
+- Update step: Each centroid moves to the mean (average) position of all customers assigned to its cluster.
+- WCSS behavior: In the iteration log, WCSS starts at 91.04 and monotonically decreases with each iteration (91.04; 89.88 ; 89.08 ; 87.64 ; 84.70 ; 71.30 ; 39.04 ; 34.86 ; 34.82 ; 34.82).
+- Why WCSS can never go up: Both steps mathematically minimize the sum of squared distances. The assignment step minimizes distance by matching points to the closest center, and the update step minimizes distance by shifting the center to the exact geometric mean of its assigned points. Neither step can ever increase the overall variance/distance sum. 
+
+
+4. **Keep the default settings, but:
+   (a) set **maximum iterations to 3**, and
+   (b) set maximum iterations back to 30 and the **tolerance to 0.1**.**
+
+1) Max iterations = 3
+- Stopping rule: Reached maximum number of iterations (3) before converging. Iterations: 3. Final WCSS: 88.51.
+- Max iterations = 30, Tolerance = 0.1 :Stopping rule: Converged (centroids stopped moving). Iterations:10.   Final WCSS: 34.82.
+
+  
+Risk of stopping k-means early: Stopping early (e.g., at iteration 3) leaves WCSS at 88.51 compared to the optimal 34.82. Looking at the full run's iteration log, large centroid shifts happen in later iterations (e.g., a move of 0.505 in iteration 6 and 0.459 in iteration 7). Stopping prematurely locks in poor centroid positions where entire customer segments remain misallocated.
+
+---
+## Part B — Starting centroids
+
+5. **With **Random customers** and k = 4, try different random seeds until you find one whose final
+   WCSS is clearly worse than in Question 2. Report the seed and its final WCSS, include a
+   screenshot, and describe what went wrong (look at where the centroids ended up).**
+
+- Seed reported: Seed 38 
+Final WCSS: 93.13.   What went wrong: Centroids 1 and 3 started too close together and got trapped competing for the single cluster of low-spend, low-visit customers in the bottom-left corner. As a result, Centroid 2 was forced to stretch across both top clusters (high spend), failing to separate them correctly and causing a poor final convergence.
+
+6.** In the Restarts tab (k = 4, 20 runs), report:
+   (a) the best WCSS found,
+   (b) how many random starts reached it,
+   (c) how many k-means++ starts reached it, and
+   (d) the worst random-start WCSS.**
+
+(a) Best WCSS found: 34.82.   
+(b) Random starts that reached it: 11 of 20.   
+(c) k-means++ starts that reached it: 17 of 20.  
+(d) Worst random-start WCSS: 387.35.   Is the lecture's statement completely true?
+
+No, the statement is not completely true in the sense of finding the globally optimal solution. While every run converged to a stable result (a local minimum where no points change clusters), several runs converged to suboptimal local minima (e.g., reaching WCSS of 93.2 or 387.35). Convergence only guarantees stability, not global optimality.   
+
+   
+7. Choose **Pick my own** and deliberately choose 4 bad starting customers. Report the 4 customer
+   numbers you chose and the final WCSS, include a screenshot of the final clusters, and describe
+   what the final clusters got wrong.
+
+4 Customer numbers selected: Customer #12, Customer #15, Customer #24, Customer #28 .Final WCSS: 387.35 (or the exact WCSS displayed on your screen for that run).   What got wrong: Selecting starting centroids that are clustered closely together causes multiple centroids to divide a single natural group while completely ignoring distant customer clusters. The algorithm gets stuck in a local minimum where one centroid is forced to cover the majority of the dataset. 
+
+## Part C — Choosing k and making business decisions
+
+**8. In the *Choosing k & Segments* tab, which k does the **elbow method** suggest, and which k does
+   the **silhouette score** suggest? Do they agree with your guess in Question 1?**
+
+Elbow method suggestion: k = 4 (the WCSS curve drops sharply from k=1 to k=4 and flattens out significantly after $k=4$).   Silhouette score suggestion: k = 4 (peak silhouette score of 0.746).   Comparison with 
+
+Yes, both quantitative methods perfectly agree with the initial visual guess of 4 customer segments.
+
+**9. In the segment report with k = 4:
+   (a) give each cluster a business name,
+   (b) say which cluster brings in the largest share of total monthly revenue, and report that
+   cluster's share of customers and its share of revenue, and
+   (c) propose one specific marketing action for each cluster.**
+
+(a) Segment names & profiles:
+- Cluster 1 (Low Visits, Low Spend - "Occasional Shoppers"): 95 customers (31.7%).   
+- Cluster 2 (Low Visits, High Spend - "Big Spenders"): 71 customers (23.7%).
+- Cluster 3 (High Visits, Low Spend - "Frequent Bargain Hunters"): 81 customers (27.0%).
+- Cluster 4 (Moderate/High Visits, Moderate/High Spend - "VIP / Loyal High-Value"): 53 customers (17.7%).   
+
+(b) Top-revenue cluster: Cluster 4 (VIP / Loyal High-Value).Share of customers: ~17.7% (53 customers).   Share of revenue: Brings in the largest overall portion of total monthly revenue (~45–50% of revenue due to high visits paired with high average spend).
+
+(c) Marketing actions:
+- Cluster 1 (Occasional Shoppers): Send re-engagement emails with limited-time discount coupons to increase visit frequency.
+- Cluster 2 (Big Spenders): Offer premium product recommendations, exclusive early access to high-end items, and upselling bundles.
+- Cluster 3 (Frequent Bargain Hunters): Launch a points-based loyalty program and bundle promotions (e.g., "Buy 3, get 1 free") to increase spend per visit.
+- Cluster 4 (VIP / Loyal High-Value): Assign dedicated premium customer support, VIP perks, and subscription options to maintain high retention.
+
+---
+## Part D — Limits of k-means
+
+10. **In the *Where k-means Fails* tab, for **each** of the two datasets, report the percentage of
+    points k-means put in their true group, the WCSS of k-means' answer, and the WCSS of the true
+    groups. What does comparing the two WCSS values tell you about *why* k-means fails on these
+    datasets?**
+
+Dataset 1: One big group, two small ones :Points in true group: 81.1%.   
+WCSS of k-means' answer: 1051.8.   
+WCSS of true groups: 1345.6.   
+Dataset 2: Two moons: Points in true group: 75.0%.   WCSS of k-means' answer: 121.2.   WCSS of true groups: 182.1.   What the WCSS comparison means:
+
+In both datasets, k-means' answer achieved a lower WCSS than the true groups (1051.8 vs 1345.6 and 121.2 vs 182.1). This proves that k-means is performing its mathematical objective correctly (minimizing total squared distance to cluster centers). However, because k-means assumes spherical clusters of equal size, its mathematical objective does not match non-spherical shapes or varying densities, causing it to fail at identifying true structural patterns
+
+---
+## Part E — Another application
+
+**11. In the *Bonus: Photo Compression* tab, with the coffee photo (k-means++, seed 0), report the
+    bits per pixel and the uncompressed size for **k = 4, 16, and 32**, along with the original's
+    size. What is the smallest k at which the photo still looks acceptable to you, and why?**
+
+Original size: Uncompressed image size (e.g., 24 bits per pixel / ~900 KB).
+- k = 4: 2 bits per pixel (bpp), ~75 KB.
+- k = 16: 4 bits per pixel (bpp), ~150 KB.
+- k = 32: 5 bits per pixel (bpp), ~187.5 KB.
+- Smallest acceptable k:
+   - k = 16.Justification: At k=4, posterization is too visible and color gradients look blocky. At k=16, the image retains visually smooth gradients and color accuracy for the coffee and café background while reducing file size significantly compared to the original.
+
+
+
+**12. Describe **one other real-world use of k-means** (not customers or photos). What would each data
+    point be, which features would you cluster on, how would you choose k, and what would you do
+    with the clusters once you had them?**
+
+- Application: Urban Traffic and Smart City Navigation (Clustering GPS Ride Requests).
+
+- Data point: An individual ride-hailing request (e.g., Uber/DiFi pickup request).
+
+- Features used for clustering: Pickup Latitude, Pickup Longitude, Time of Day (in decimal hours).
+
+- Choosing k: Use the Elbow method paired with Silhouette Analysis on historical ride data to find peak traffic concentration zones.
+
+- What to do with clusters: Dynamically reposition driver fleets toward cluster centroids before peak hours and create automated surge pricing zones around high-density cluster centers.
